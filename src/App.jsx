@@ -32,7 +32,7 @@ const App = () => {
 			<div className="min-h screen">
 				<Routes>
 					<Route index path="/" element={<HomePage />} />
-					<Route exact path="/market" element={<MarketPage />} />
+					<Route exact path="/Market" element={<MarketPage />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 			</div>
