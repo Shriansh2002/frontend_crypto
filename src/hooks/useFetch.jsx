@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const APIKEY = 'qbt7Nqz0o6KV1D2210HQNX8QcRbSaAtb';
+const APIKEY = import.meta.env.VITE_GIPHY_API;
 
 const useFetch = ({ keyword }) => {
 	const [gifUrl, setGifUrl] = useState('');
@@ -8,9 +8,7 @@ const useFetch = ({ keyword }) => {
 	const fetchGifs = async () => {
 		try {
 			const response = await fetch(
-				`https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&q=${keyword
-					.split(' ')
-					.join('')}&limit=1`
+				`https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&q=${keyword.split(' ').join('')}&limit=1`
 			);
 			const { data } = await response.json();
 
