@@ -6,7 +6,7 @@ import logo from '../../images/logo.png';
 import { TransactionsContext } from '../context/TransactionsContext';
 
 const NavBarItem = ({ title, classprops }) => (
-	<a href="/Market">
+	<a href={`/${title.toLowerCase()}`}>
 		<li className={`mx-4 cursor-pointer ${classprops}`}>{title}</li>
 	</a>
 );
