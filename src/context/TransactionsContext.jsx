@@ -68,17 +68,15 @@ export const TransactionsProvider = ({ children }) => {
 			if (!ethereum) return alert('Please Install Metamask');
 
 			const accounts = await ethereum.request({ method: 'eth_accounts' });
-			console.log(accounts);
 
 			if (accounts.length) {
 				setCurrentAccount(accounts[0]);
 				getAllTransactions();
 			} else {
-				console.log('No ACCOUNT Found');
+				console.log('Connect Your Wallet');
 			}
 		} catch (error) {
-			console.log(error);
-			throw new Error('No Eth Object');
+			throw new Error('Connect Your Wallet');
 		}
 	};
 
@@ -90,8 +88,7 @@ export const TransactionsProvider = ({ children }) => {
 
 			window.localStorage.setItem('transactionCount', transactionCount);
 		} catch (error) {
-			console.log(error);
-			throw new Error('No Eth Object');
+			throw new Error('Connect Your Wallet');
 		}
 	};
 

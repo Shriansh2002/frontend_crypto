@@ -12,6 +12,9 @@ import {
 	Tooltip,
 	Legend,
 } from 'chart.js';
+import { SelectButton } from './SelectButton';
+import { chartDays } from '../utils/chartDays';
+import Loader from './Loader';
 
 ChartJS.register(
 	CategoryScale,
@@ -23,60 +26,11 @@ ChartJS.register(
 	Legend
 );
 
-const SelectButton = ({ children, selected, onClick }) => {
-	return (
-		<>
-			<span
-				onClick={onClick}
-				style={{
-					border: '1px solid gold',
-					borderRadius: 5,
-					padding: 10,
-					paddingLeft: 20,
-					paddingRight: 20,
-					fontFamily: 'Montserrat',
-					textAlign: 'center',
-					cursor: 'pointer',
-					backgroundColor: selected ? 'gold' : '',
-					color: selected ? 'black' : 'white',
-					fontWeight: selected ? 700 : 500,
-					width: '22%',
-					'&:hover': {
-						backgroundColor: 'gold',
-						color: 'black',
-					},
-				}}
-			>
-				{children}
-			</span>
-		</>
-	);
-};
-
 function MarketChart() {
 	const [historicData, sethistoricData] = useState();
 	const [days, setDays] = useState(1);
 	const [flag, setFlag] = useState(false);
 	const currency = 'INR';
-
-	const chartDays = [
-		{
-			label: '24 Hours',
-			value: 1,
-		},
-		{
-			label: '30 Days',
-			value: 30,
-		},
-		{
-			label: '3 Months',
-			value: 90,
-		},
-		{
-			label: '1 Year',
-			value: 365,
-		},
-	];
 
 	const fetchHistoricData = async () => {
 		const { data } = await axios.get(HistoricalChart(days, currency));
@@ -91,9 +45,12 @@ function MarketChart() {
 
 	return (
 		<>
-			<div className="container">
+			<div className="container mx-auto">
 				{!historicData | (flag === false) ? (
-					<>loading...</>
+					<div className="text-white text-center">
+						<Loader />
+						Loading...
+					</div>
 				) : (
 					<>
 						<Line
