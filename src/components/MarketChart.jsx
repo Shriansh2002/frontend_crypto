@@ -12,7 +12,7 @@ import {
 	Tooltip,
 	Legend,
 } from 'chart.js';
-import { SelectButton } from './SelectButton';
+import SelectButton from './SelectButton';
 import { chartDays } from '../utils/chartDays';
 import Loader from './Loader';
 

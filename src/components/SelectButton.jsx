@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SelectButton = ({ children, selected, onClick }) => {
+const SelectButton = ({ children, selected, onClick }) => {
 	return (
 		<>
 			<span
@@ -30,3 +30,5 @@ export const SelectButton = ({ children, selected, onClick }) => {
 		</>
 	);
 };
+
+export default SelectButton;
