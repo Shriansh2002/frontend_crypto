@@ -11,7 +11,9 @@ const MarketPage = () => {
 				<h1 className="flex text-center text-3xl sm:text-5xl text-white text-gradient py-1 mt-3 justify-center">
 					Eth <SiEthereum /> Market
 				</h1>
-				<MarketChart />
+				<div className="flex mf:flex-row flex-col items-center justify-between md:p-20 py-12 px-4">
+					<MarketChart />
+				</div>
 			</div>
 			<Footer />
 		</div>

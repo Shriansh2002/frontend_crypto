@@ -73,7 +73,7 @@ export const TransactionsProvider = ({ children }) => {
 				setCurrentAccount(accounts[0]);
 				getAllTransactions();
 			} else {
-				console.log('Connect Your Wallet');
+				throw new Error('Connect Your Wallet');
 			}
 		} catch (error) {
 			throw new Error('Connect Your Wallet');
