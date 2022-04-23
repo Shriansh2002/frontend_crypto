@@ -17,7 +17,7 @@ export const SelectButton = ({ children, selected, onClick }) => {
 					backgroundColor: selected ? 'gold' : '',
 					color: selected ? 'black' : 'white',
 					fontWeight: selected ? 700 : 500,
-					width: '15%',
+					width: '22%',
 					marginBottom: '70px',
 					'&:hover': {
 						backgroundColor: 'gold',
