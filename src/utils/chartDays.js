@@ -15,4 +15,8 @@ export const chartDays = [
 		label: '12 Months',
 		value: 365,
 	},
+	{
+		label: '24 Months',
+		value: 730,
+	},
 ];
