@@ -5,5 +5,6 @@ export { default as Welcome } from './Welcome';
 export { default as Transactions } from './Transactions';
 export { default as Services } from './Services';
 export { default as NotFoundPage } from './Pages/NotFoundPage';
+export { default as ExchangePage } from './Pages/ExchangePage';
 export { default as MarketPage } from './Pages/MarketPage';
 export { default as MarketChart } from './MarketChart';

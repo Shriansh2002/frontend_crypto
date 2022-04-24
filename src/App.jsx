@@ -7,6 +7,7 @@ import {
 	Transactions,
 	NotFoundPage,
 	MarketPage,
+	ExchangePage,
 } from './components/index';
 
 import { render } from 'react-dom';
@@ -33,6 +34,7 @@ const App = () => {
 				<Routes>
 					<Route index path="/" element={<HomePage />} />
 					<Route exact path="/Market" element={<MarketPage />} />
+					<Route exact path="/Exchange" element={<ExchangePage />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 			</div>
