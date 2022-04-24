@@ -71,6 +71,7 @@ export const TransactionsProvider = ({ children }) => {
 
 			if (accounts.length) {
 				setCurrentAccount(accounts[0]);
+				checkIfTransactionsExists();
 				getAllTransactions();
 			} else {
 				throw new Error('Connect Your Wallet');
@@ -149,7 +150,6 @@ export const TransactionsProvider = ({ children }) => {
 
 	useEffect(() => {
 		checkIfWalletIsConnected();
-		checkIfTransactionsExists();
 	}, []);
 
 	return (
