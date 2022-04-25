@@ -1,5 +1,10 @@
 import React from 'react';
-import { HomePage, NotFoundPage, MarketPage, ExchangePage } from './Pages';
+import {
+	HomePage,
+	NotFoundPage,
+	MarketPage,
+	ExchangePage,
+} from './Pages/index';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
