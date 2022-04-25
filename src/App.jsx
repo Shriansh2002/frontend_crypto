@@ -1,31 +1,7 @@
 import React from 'react';
-import {
-	Navbar,
-	Welcome,
-	Footer,
-	Services,
-	Transactions,
-	NotFoundPage,
-	MarketPage,
-	ExchangePage,
-} from './components/index';
+import { HomePage, NotFoundPage, MarketPage, ExchangePage } from './Pages';
 
-import { render } from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-const HomePage = () => {
-	return (
-		<>
-			<div className="gradient-bg-welcome">
-				<Navbar />
-				<Welcome />
-			</div>
-			<Services />
-			<Transactions />
-			<Footer />
-		</>
-	);
-};
 
 const App = () => {
 	return (

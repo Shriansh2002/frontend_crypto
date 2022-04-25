@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Footer, Navbar } from '../index';
+import { Footer, Navbar } from '../components/index';
 
 const ExchangePage = () => {
 	return (

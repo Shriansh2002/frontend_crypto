@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 
-import { Loader } from './';
+import { Loader } from '../';
 
-import { shortenAddress } from '../utils/shortenAddress';
-import { TransactionsContext } from '../context/TransactionsContext';
+import { shortenAddress } from '../../utils/shortenAddress';
+import { TransactionsContext } from '../../context/TransactionsContext';
 
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { SiEthereum } from 'react-icons/si';

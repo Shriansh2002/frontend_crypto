@@ -2,8 +2,8 @@ import { useState, useContext } from 'react';
 import { HiMenuAlt4 } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
 
-import logo from '../../images/logo.png';
-import { TransactionsContext } from '../context/TransactionsContext';
+import logo from '../../../images/logo.png';
+import { TransactionsContext } from '../../context/TransactionsContext';
 
 const NavBarItem = ({ title, classprops }) => (
 	<a href={`/${title.toLowerCase()}`}>
