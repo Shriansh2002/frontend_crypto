@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Footer, Navbar, MarketChart } from '../components/index';
 import { SiEthereum } from 'react-icons/si';
 

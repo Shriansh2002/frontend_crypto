@@ -1,5 +1,3 @@
-import React from 'react';
-
 const NotFoundPage = () => {
 	const sectionStyle = {
 		padding: '40px 0',

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import { TransactionsContext } from '../../context/TransactionsContext';
 import { shortenAddress } from '../../utils/shortenAddress';

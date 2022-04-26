@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState, createContext } from 'react';
 import { ethers } from 'ethers';
 
 import { contractABI, contractAddress } from '../utils/constants';
 
-export const TransactionsContext = React.createContext();
+export const TransactionsContext = createContext();
 
 const { ethereum } = window;
 
