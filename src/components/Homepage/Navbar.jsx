@@ -11,6 +11,8 @@ const NavBarItem = ({ title, classprops }) => (
 	</a>
 );
 
+const listOfFunctions = ['Market', 'Exchange', 'Tutorials'];
+
 const Navbar = () => {
 	const [toggleMenu, setToggleMenu] = useState(false);
 	const { currentAccount, connectWallet } = useContext(TransactionsContext);
@@ -27,11 +29,9 @@ const Navbar = () => {
 				</a>
 			</div>
 			<ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
-				{['Market', 'Exchange', 'Tutorials', 'Wallets'].map(
-					(item, index) => (
-						<NavBarItem key={item + index} title={item} />
-					)
-				)}
+				{listOfFunctions.map((item, index) => (
+					<NavBarItem key={item + index} title={item} />
+				))}
 
 				{!currentAccount && (
 					<button type="button" onClick={connectWallet}>

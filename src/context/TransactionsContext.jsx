@@ -58,7 +58,6 @@ export const TransactionsProvider = ({ children }) => {
 			);
 			setTransactions(structuredTransactions);
 		} catch (error) {
-			console.log(error);
 			throw new Error('No Eth Object');
 		}
 	};
@@ -101,7 +100,6 @@ export const TransactionsProvider = ({ children }) => {
 			});
 			setCurrentAccount(accounts[0]);
 		} catch (err) {
-			console.log(error);
 			throw new Error('No Eth Object');
 		}
 	};
@@ -143,7 +141,6 @@ export const TransactionsProvider = ({ children }) => {
 
 			setTransactionCount(transactionCount.toNumber);
 		} catch (error) {
-			console.log(error);
 			throw new Error('No Eth Object');
 		}
 	};

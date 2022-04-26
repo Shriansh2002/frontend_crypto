@@ -7,6 +7,8 @@ export { default as Footer } from './Homepage/Footer';
 export { default as Welcome } from './Homepage/Welcome';
 export { default as Transactions } from './Homepage/Transactions';
 export { default as Services } from './Homepage/Services';
+export { default as TransactionsForm } from './Homepage/TransactionsForm';
+export { default as CardComponent } from './Homepage/CardComponent';
 
 //
 export { default as MarketChart } from './Market/MarketChart';
