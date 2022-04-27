@@ -27,7 +27,7 @@ const MainChartComponent = ({
 						)}
 						{currentPrice.usd && (
 							<>
-								{currentPrice.usd.toLocaleString('de-DE', {
+								{currentPrice.usd.toLocaleString('en-US', {
 									style: 'currency',
 									currency: 'USD',
 								})}
