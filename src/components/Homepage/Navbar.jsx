@@ -64,15 +64,13 @@ const Navbar = () => {
 							/>
 						</li>
 
-						{['Market', 'Exchange', 'Tutorials', 'Wallets'].map(
-							(item, index) => (
-								<NavBarItem
-									key={item + index}
-									title={item}
-									classprops="my-2 text-lg"
-								/>
-							)
-						)}
+						{listOfFunctions.map((item, index) => (
+							<NavBarItem
+								key={item + index}
+								title={item}
+								classprops="my-2 text-lg"
+							/>
+						))}
 					</ul>
 				)}
 			</div>
