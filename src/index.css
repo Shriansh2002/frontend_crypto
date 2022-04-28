@@ -14,6 +14,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+::-webkit-scrollbar{
+  display: none;
+}
+
+
 .gradient-bg-welcome {
   background-color:#0f0e13;
   background-image: 
