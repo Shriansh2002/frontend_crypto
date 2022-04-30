@@ -136,8 +136,8 @@ const MarketPage = () => {
 									Compare your funds here.
 								</div>
 								<BuyTokens
-									list={listOne}
 									avaiilableCurr={avaiilableCurr}
+									currentEthPrice={currentPrice.inr}
 								/>
 							</div>
 						</div>

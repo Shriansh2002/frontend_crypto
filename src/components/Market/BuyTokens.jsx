@@ -1,4 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { getCurrentPrice } from '../../utils/marketChartAPI';
 
 const styles = {
 	inputAmount: `w-1/2 flex items-center justify-center border border-white rounded-lg p-2 bg-transparent mt-6 text-white placeholder:text-white`,
@@ -8,7 +10,36 @@ const styles = {
 	noticeCTA: 'font-bold text-green-500 cursor-pointer mt-5',
 };
 
-const BuyTokens = ({ list, avaiilableCurr }) => {
+const BuyTokens = ({ avaiilableCurr, currentEthPrice }) => {
+	const [amount, setAmount] = useState('');
+	const [currencyPrice, setCurrencyPrice] = useState('');
+	const [toCoin, setToCoin] = useState('bitcoin');
+	const [currencySelected, setCurrencySelected] = useState('BTC');
+
+	//
+	const fetchListData = async () => {
+		const { data } = await axios.get(getCurrentPrice('INR', toCoin));
+
+		if (data?.bitcoin?.inr) {
+			setCurrencyPrice(data?.bitcoin.inr);
+			setCurrencySelected('BTC');
+		}
+		if (data?.dogecoin?.inr) {
+			setCurrencyPrice(data?.dogecoin.inr);
+			setCurrencySelected('DOGE');
+		}
+		if (data?.litecoin?.inr) {
+			setCurrencyPrice(data?.litecoin.inr);
+			setCurrencySelected('LTC');
+		}
+
+		setAmount(currentEthPrice / currencyPrice);
+	};
+
+	useEffect(() => {
+		fetchListData();
+	}, [toCoin]);
+
 	return (
 		<form className={styles.formContainer}>
 			<div className="flex h-full w-full flex-col items-center">
@@ -19,8 +50,10 @@ const BuyTokens = ({ list, avaiilableCurr }) => {
 				</select>
 				<select
 					className={styles.select}
-					// value={toCoin}
-					onChange={(e) => setToCoin(e.target.value)}
+					defaultValue="bitcoin"
+					onChange={(e) => {
+						setToCoin(e.target.value);
+					}}
 				>
 					{avaiilableCurr.map((ele, index) => (
 						<option
@@ -32,22 +65,25 @@ const BuyTokens = ({ list, avaiilableCurr }) => {
 						</option>
 					))}
 				</select>
-				<input
-					placeholder="Amount..."
-					className={styles.inputAmount}
-					type="text"
-					// value={amount}
-					// onChange={(e) => setAmount(e.target.value)}
-				/>
 
 				<button
 					className={styles.noticeCTA}
 					type="button"
-					// disabled={!isAuthenticated}
-					// onClick={() => mint()}
+					onClick={fetchListData}
 				>
 					Compare
 				</button>
+
+				<input
+					className={styles.inputAmount}
+					type="text"
+					value={
+						amount
+							? `${amount.toLocaleString('en-IN')}`
+							: `Amount ...`
+					}
+					onChange={(e) => console.log(`updated value: ${amount}`)}
+				/>
 			</div>
 		</form>
 	);

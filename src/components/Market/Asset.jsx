@@ -17,12 +17,6 @@ const Asset = ({ coin }) => {
 	const [flag, setFlag] = useState(false);
 	const days = 1;
 
-	const fetchHistoricData = async () => {
-		const { data } = await axios.get(HistoricalChart(days, 'INR'));
-		setFlag(true);
-		sethistoricData(data.prices);
-	};
-
 	const setGraphColor = () => {
 		if (coin.price_change_percentage_24h < 0) {
 			return '#ef4b09';
@@ -30,7 +24,16 @@ const Asset = ({ coin }) => {
 			return '#00ff1a';
 		}
 	};
+
 	useEffect(() => {
+		const fetchHistoricData = async () => {
+			const { data } = await axios.get(
+				HistoricalChart(days, 'INR', coin.id)
+			);
+			setFlag(true);
+			sethistoricData(data.prices);
+		};
+
 		fetchHistoricData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
@@ -88,6 +91,7 @@ const Asset = ({ coin }) => {
 		],
 	};
 	const options = {
+		locale: 'en-IN',
 		plugins: {
 			legend: {
 				display: false,
@@ -146,8 +150,12 @@ const Asset = ({ coin }) => {
 								: '#00ff1a',
 					}}
 				>
+					{coin.price_change_percentage_24h > 0 && <>+ </>}
 					{coin.price_change_percentage_24h?.toLocaleString('en-IN', {
-						maximumSignificantDigits: 3,
+						maximumSignificantDigits:
+							Math.abs(coin.price_change_percentage_24h) < 0.001
+								? 1
+								: 3,
 					})}
 					%
 				</div>
