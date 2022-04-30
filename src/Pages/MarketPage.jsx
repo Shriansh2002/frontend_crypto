@@ -1,10 +1,12 @@
-import { MarketChart } from '../components/index';
+import {
+	MarketChart,
+	Header,
+	Asset,
+	Notice,
+	BuyTokens,
+} from '../components/index';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { AiOutlinePlus } from 'react-icons/ai';
-import Header from '../components/Market/Header';
-import Asset from '../components/Market/Asset';
-import Notice from '../components/Market/Notice';
-import BuyTokens from '../components/Market/BuyTokens';
 
 import { getCurrentPrice, getMarketInfo } from '../utils/marketChartAPI';
 import axios from 'axios';
@@ -39,20 +41,19 @@ const styles = {
 const MarketPage = () => {
 	const [currentPrice, setCurrentPrice] = useState({});
 	const [somedata, setSomeData] = useState({});
-	let temp_data;
+	const [days, setDays] = useState(1);
 
 	const fetchCurrentPrice = async () => {
 		const { data } = await axios.get(getCurrentPrice('INR'));
 		setCurrentPrice(data.ethereum);
 	};
-	console.log(temp_data);
 
 	const fetchDataPrice = async () => {
 		const { data } = await axios.get(getMarketInfo());
 		setSomeData(data[0]);
 	};
 
-	// console.log(somedata);
+	console.log(currentPrice);
 
 	useEffect(() => {
 		fetchCurrentPrice();
@@ -71,25 +72,39 @@ const MarketPage = () => {
 								ETHEREUM
 							</div>
 							<div className={styles.portfolioPercent}>
-								+{' '}
-								{somedata.price_change_24h?.toLocaleString(
-									'en-IN',
-									{
-										maximumSignificantDigits: 3,
-										style: 'currency',
-										currency: 'INR',
-									}
-								)}{' '}
-								( +{somedata.price_change_percentage_24h} %)
+								<>
+									{somedata.price_change_24h > 0 && <>+ </>}
+									{somedata.price_change_24h?.toLocaleString(
+										'en-IN',
+										{
+											maximumSignificantDigits: 5,
+											style: 'currency',
+											currency: 'INR',
+										}
+									)}
+								</>
+								{'  '}
+								<>
+									(
+									{somedata.price_change_percentage_24h >
+										0 && <>+ </>}
+									{somedata.price_change_percentage_24h?.toLocaleString(
+										'en-IN',
+										{
+											maximumSignificantDigits: 3,
+										}
+									)}{' '}
+								</>
+								%)
 								<span className={styles.pastHour}>
-									{' '}
-									Past Day
+									{'  '}Past {days} Day
+									{days != 1 && <>s</>}
 								</span>
 							</div>
 						</div>
 						<div>
 							<div className={styles.chartContainer}>
-								<MarketChart />
+								<MarketChart days={days} setDays={setDays} />
 							</div>
 						</div>
 						<div className={styles.buyingPowerContainer}>
@@ -98,7 +113,7 @@ const MarketPage = () => {
 							</div>
 							<div className={styles.buyingPowerAmount}>
 								{currentPrice.inr?.toLocaleString('en-IN', {
-									maximumSignificantDigits: 3,
+									maximumSignificantDigits: 6,
 									style: 'currency',
 									currency: 'INR',
 								})}
@@ -130,8 +145,11 @@ const MarketPage = () => {
 
 						{['1', '2', '3'].map((ele, index) => (
 							<Asset
-								coin={'ETH'}
-								price={227000}
+								coin={{
+									symbol: 'ETH',
+									change: somedata.price_change_percentage_24h,
+								}}
+								price={currentPrice.inr}
 								key={ele + index}
 							/>
 						))}

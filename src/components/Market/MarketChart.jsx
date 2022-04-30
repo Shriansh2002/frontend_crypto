@@ -23,9 +23,8 @@ ChartJS.register(
 	Legend
 );
 
-function MarketChart() {
+function MarketChart({ days, setDays }) {
 	const [historicData, sethistoricData] = useState();
-	const [days, setDays] = useState(1);
 	const [flag, setFlag] = useState(false);
 	const currency = 'INR';
 

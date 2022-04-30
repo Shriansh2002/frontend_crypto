@@ -103,6 +103,14 @@ const Asset = ({ coin, price }) => {
 				radius: 1,
 			},
 		},
+		scales: {
+			yAxes: {
+				display: false,
+			},
+			xAxes: {
+				display: false,
+			},
+		},
 	};
 
 	return (
@@ -123,8 +131,8 @@ const Asset = ({ coin, price }) => {
 
 			<div className={styles.price}>
 				<div>
-					{price.toLocaleString('en-IN', {
-						maximumSignificantDigits: 3,
+					{price?.toLocaleString('en-IN', {
+						maximumSignificantDigits: 7,
 						style: 'currency',
 						currency: 'INR',
 					})}
@@ -133,7 +141,10 @@ const Asset = ({ coin, price }) => {
 					className={styles.percent}
 					style={{ color: coin.change < 0 ? '#ef4b09' : 'green' }}
 				>
-					{coin.change}%
+					{coin.change?.toLocaleString('en-IN', {
+						maximumSignificantDigits: 3,
+					})}
+					%
 				</div>
 			</div>
 		</div>
