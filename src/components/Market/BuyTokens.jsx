@@ -8,29 +8,13 @@ const styles = {
 	noticeCTA: 'font-bold text-green-500 cursor-pointer mt-5',
 };
 
-const BuyTokens = () => {
+const BuyTokens = ({ list, avaiilableCurr }) => {
 	return (
 		<form className={styles.formContainer}>
 			<div className="flex h-full w-full flex-col items-center">
-				<select
-					className={styles.select}
-					// value={coinSelect}
-					// onChange={(e) => setCoinSelect(e.target.value)}
-				>
+				<select className={styles.select}>
 					<option className={styles.options} value="ETH">
 						ETH
-					</option>
-					<option className={styles.options} value="DOGE">
-						DOGE
-					</option>
-					<option className={styles.options} value="USDC">
-						USDC
-					</option>
-					<option className={styles.options} value="LINK">
-						LINK
-					</option>
-					<option className={styles.options} value="DAI">
-						DAI
 					</option>
 				</select>
 				<select
@@ -38,18 +22,15 @@ const BuyTokens = () => {
 					// value={toCoin}
 					onChange={(e) => setToCoin(e.target.value)}
 				>
-					<option className={styles.options} value="DOGE">
-						DOGE
-					</option>
-					<option className={styles.options} value="USDC">
-						USDC
-					</option>
-					<option className={styles.options} value="LINK">
-						LINK
-					</option>
-					<option className={styles.options} value="DAI">
-						DAI
-					</option>
+					{avaiilableCurr.map((ele, index) => (
+						<option
+							className={styles.options}
+							value={ele.id}
+							key={ele + index}
+						>
+							{ele.id.toUpperCase()}
+						</option>
+					))}
 				</select>
 				<input
 					placeholder="Amount..."

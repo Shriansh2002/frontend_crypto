@@ -41,24 +41,32 @@ const styles = {
 const MarketPage = () => {
 	const [currentPrice, setCurrentPrice] = useState({});
 	const [somedata, setSomeData] = useState({});
+	const [avaiilableCurr, setAvaiilableCurr] = useState([]);
 	const [days, setDays] = useState(1);
 
-	const fetchCurrentPrice = async () => {
-		const { data } = await axios.get(getCurrentPrice('INR'));
-		setCurrentPrice(data.ethereum);
-	};
-
-	const fetchDataPrice = async () => {
-		const { data } = await axios.get(getMarketInfo());
-		setSomeData(data[0]);
-	};
-
-	console.log(currentPrice);
-
+	const listOne = ['bitcoin', 'dogecoin', 'litecoin'];
 	useEffect(() => {
+		const fetchCurrentPrice = async () => {
+			const { data } = await axios.get(getCurrentPrice('INR'));
+			setCurrentPrice(data.ethereum);
+		};
+
+		const fetchDataPrice = async () => {
+			const { data } = await axios.get(getMarketInfo('ethereum'));
+			setSomeData(data[0]);
+		};
+
+		const fetchListData = async (item) => {
+			const { data } = await axios.get(getMarketInfo(item));
+			setAvaiilableCurr((avaiilableCurr) => [...avaiilableCurr, ...data]);
+		};
+
 		fetchCurrentPrice();
 		fetchDataPrice();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+
+		listOne.map((item, id) => {
+			fetchListData(item);
+		});
 	}, []);
 
 	return (
@@ -127,7 +135,10 @@ const MarketPage = () => {
 								<div className={styles.noticeMessage}>
 									Compare your funds here.
 								</div>
-								<BuyTokens />
+								<BuyTokens
+									list={listOne}
+									avaiilableCurr={avaiilableCurr}
+								/>
 							</div>
 						</div>
 						<Notice />
@@ -143,15 +154,8 @@ const MarketPage = () => {
 							/>
 						</div>
 
-						{['1', '2', '3'].map((ele, index) => (
-							<Asset
-								coin={{
-									symbol: 'ETH',
-									change: somedata.price_change_percentage_24h,
-								}}
-								price={currentPrice.inr}
-								key={ele + index}
-							/>
+						{avaiilableCurr.map((ele, index) => (
+							<Asset coin={ele} key={ele + index} />
 						))}
 
 						<div className={styles.rightMainItem}>

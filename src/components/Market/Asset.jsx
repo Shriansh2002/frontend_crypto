@@ -4,7 +4,7 @@ import { HistoricalChart } from '../../utils/marketChartAPI';
 import axios from 'axios';
 
 const styles = {
-	wrapper: 'flex justify-between p-5  hover:bg-[#30363B] duration-300',
+	wrapper: 'flex justify-between p-5 hover:bg-[#30363B] duration-300',
 	container: 'flex flex-col text-white items-center justify-center',
 	name: 'font-bold',
 	chart: 'w-36 h-full',
@@ -12,7 +12,7 @@ const styles = {
 	percent: 'text-green-400',
 };
 
-const Asset = ({ coin, price }) => {
+const Asset = ({ coin }) => {
 	const [historicData, sethistoricData] = useState();
 	const [flag, setFlag] = useState(false);
 	const days = 1;
@@ -24,7 +24,7 @@ const Asset = ({ coin, price }) => {
 	};
 
 	const setGraphColor = () => {
-		if (coin.change < 0) {
+		if (coin.price_change_percentage_24h < 0) {
 			return '#ef4b09';
 		} else {
 			return '#00ff1a';
@@ -116,7 +116,7 @@ const Asset = ({ coin, price }) => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.container}>
-				<div className={styles.name}>{coin.symbol}</div>
+				<div className={styles.name}>{coin.symbol?.toUpperCase()}</div>
 			</div>
 			<div>
 				<div className={styles.chart}>
@@ -131,7 +131,7 @@ const Asset = ({ coin, price }) => {
 
 			<div className={styles.price}>
 				<div>
-					{price?.toLocaleString('en-IN', {
+					{coin.current_price?.toLocaleString('en-IN', {
 						maximumSignificantDigits: 7,
 						style: 'currency',
 						currency: 'INR',
@@ -139,9 +139,14 @@ const Asset = ({ coin, price }) => {
 				</div>
 				<div
 					className={styles.percent}
-					style={{ color: coin.change < 0 ? '#ef4b09' : 'green' }}
+					style={{
+						color:
+							coin.price_change_percentage_24h < 0
+								? '#ef4b09'
+								: '#00ff1a',
+					}}
 				>
-					{coin.change?.toLocaleString('en-IN', {
+					{coin.price_change_percentage_24h?.toLocaleString('en-IN', {
 						maximumSignificantDigits: 3,
 					})}
 					%
