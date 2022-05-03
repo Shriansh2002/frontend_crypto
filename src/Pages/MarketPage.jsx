@@ -11,6 +11,7 @@ import { getCurrentPrice, getMarketInfo } from '../utils/marketChartAPI';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { chartDays } from '../utils/chartDays';
+import { AiFillCaretUp, AiFillCaretDown } from 'react-icons/ai';
 
 const styles = {
 	wrapper: 'w-screen flex flex-col bg-black',
@@ -32,7 +33,7 @@ const styles = {
 	noticeMessage: 'text-white font-bold',
 	noticeCTA: 'font-bold text-green-500 cursor-pointer mt-5',
 	rightMain:
-		'flex flex-col flex-1 h-4/5 bg-[#1E2123] mt-6 rounded-lg overflow-y-scroll noScroll',
+		'flex flex-col  h-4/5 bg-[#1E2123] mt-6 rounded-lg overflow-y-scroll noScroll',
 	rightMainItem: 'flex items-center text-white p-5 border-b border-[#30363b]',
 	ItemTitle: 'flex-1 font-bold',
 	moreOptions: 'cursor-pointer text-xl',
@@ -81,6 +82,15 @@ const MarketPage = () => {
 								<span className="bg-gray-100 text-gray-800 text-sm font-medium ml-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
 									Rank #{somedata.market_cap_rank}
 								</span>
+								{somedata.price_change_24h > 0 ? (
+									<AiFillCaretUp
+										style={{ color: '#00ff1a' }}
+									/>
+								) : (
+									<AiFillCaretDown
+										style={{ color: '#ef4b09' }}
+									/>
+								)}
 							</div>
 							<div className={styles.portfolioPercent}>
 								<>

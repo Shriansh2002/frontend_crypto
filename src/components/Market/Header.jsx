@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import logo from '../../../images/logo.png';
 import { TransactionsContext } from '../../context/TransactionsContext';
 import { shortenAddress } from '../../utils/shortenAddress';

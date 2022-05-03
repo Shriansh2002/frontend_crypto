@@ -151,12 +151,20 @@ const Asset = ({ coin }) => {
 					}}
 				>
 					{coin.price_change_percentage_24h > 0 && <>+ </>}
-					{coin.price_change_percentage_24h?.toLocaleString('en-IN', {
-						maximumSignificantDigits:
-							Math.abs(coin.price_change_percentage_24h) < 0.001
-								? 1
-								: 3,
-					})}
+					{coin.price_change_percentage_24h > 0.1 &&
+					coin.price_change_percentage_24h < 0.9
+						? coin.price_change_percentage_24h?.toLocaleString(
+								'en-IN',
+								{
+									maximumSignificantDigits: 1,
+								}
+						  )
+						: coin.price_change_percentage_24h?.toLocaleString(
+								'en-IN',
+								{
+									maximumSignificantDigits: 2,
+								}
+						  )}
 					%
 				</div>
 			</div>

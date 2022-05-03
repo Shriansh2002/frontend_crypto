@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { HistoricalChart, getCurrentPrice } from '../../utils/marketChartAPI';
+import { HistoricalChart } from '../../utils/marketChartAPI';
 import {
 	Chart as ChartJS,
 	CategoryScale,
