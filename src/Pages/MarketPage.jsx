@@ -2,15 +2,15 @@ import {
 	MarketChart,
 	Header,
 	Asset,
-	Notice,
 	BuyTokens,
+	SelectButton,
 } from '../components/index';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
-import { AiOutlinePlus } from 'react-icons/ai';
 
 import { getCurrentPrice, getMarketInfo } from '../utils/marketChartAPI';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { chartDays } from '../utils/chartDays';
 
 const styles = {
 	wrapper: 'w-screen flex flex-col bg-black',
@@ -78,6 +78,9 @@ const MarketPage = () => {
 						<div className={styles.portfolioAmountContainer}>
 							<div className={styles.portfolioAmount}>
 								ETHEREUM
+								<span className="bg-gray-100 text-gray-800 text-sm font-medium ml-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+									Rank #{somedata.market_cap_rank}
+								</span>
 							</div>
 							<div className={styles.portfolioPercent}>
 								<>
@@ -105,14 +108,32 @@ const MarketPage = () => {
 								</>
 								%)
 								<span className={styles.pastHour}>
-									{'  '}Past {days} Day
-									{days != 1 && <>s</>}
+									{'  '}Past 1 Day
 								</span>
 							</div>
 						</div>
 						<div>
 							<div className={styles.chartContainer}>
 								<MarketChart days={days} setDays={setDays} />
+							</div>
+							<div
+								style={{
+									display: 'flex',
+									justifyContent: 'space-around',
+									width: '100%',
+								}}
+							>
+								{chartDays.map((day) => (
+									<SelectButton
+										key={day.value}
+										onClick={() => {
+											setDays(day.value);
+										}}
+										selected={day.value === days}
+									>
+										{day.label}
+									</SelectButton>
+								))}
 							</div>
 						</div>
 						<div className={styles.buyingPowerContainer}>
@@ -141,7 +162,6 @@ const MarketPage = () => {
 								/>
 							</div>
 						</div>
-						<Notice />
 					</div>
 					<div className={styles.rightMain}>
 						<div className={styles.rightMainItem}>
@@ -157,11 +177,6 @@ const MarketPage = () => {
 						{avaiilableCurr.map((ele, index) => (
 							<Asset coin={ele} key={ele + index} />
 						))}
-
-						<div className={styles.rightMainItem}>
-							<div className={styles.ItemTitle}>Lists</div>
-							<AiOutlinePlus className={styles.moreOptions} />
-						</div>
 					</div>
 				</div>
 			</div>

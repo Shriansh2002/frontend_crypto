@@ -1,6 +1,4 @@
 import { Line } from 'react-chartjs-2';
-import SelectButton from './SelectButton';
-import { chartDays } from '../../utils/chartDays';
 
 const MainChartComponent = ({ historicData, days, currency }) => {
 	return (

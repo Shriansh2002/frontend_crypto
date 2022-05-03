@@ -4,7 +4,7 @@ const SelectButton = ({ children, selected, onClick }) => {
 			<span
 				onClick={onClick}
 				style={{
-					border: '1px solid gold',
+					border: '1px solid #00ff1a',
 					borderRadius: 5,
 					padding: 8,
 					paddingLeft: 20,
@@ -12,13 +12,13 @@ const SelectButton = ({ children, selected, onClick }) => {
 					fontFamily: 'Montserrat',
 					textAlign: 'center',
 					cursor: 'pointer',
-					backgroundColor: selected ? 'gold' : '',
+					backgroundColor: selected ? '#00ff1a' : '',
 					color: selected ? 'black' : 'white',
 					fontWeight: selected ? 700 : 500,
 					width: '22%',
-					marginBottom: '70px',
+					marginBottom: '50px',
 					'&:hover': {
-						backgroundColor: 'gold',
+						backgroundColor: '#00ff1a',
 						color: 'black',
 					},
 				}}
