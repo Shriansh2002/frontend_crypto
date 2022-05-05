@@ -12,7 +12,7 @@ export { default as CardComponent } from './Homepage/CardComponent';
 
 //
 export { default as Asset } from './Market/Asset';
-export { default as BuyTokens } from './Market/BuyTokens';
+export { default as BuyTokens } from './Convert/BuyTokens';
 export { default as Header } from './Market/Header';
 export { default as SelectButton } from './Market/SelectButton';
 export { default as MarketChart } from './Market/MarketChart';

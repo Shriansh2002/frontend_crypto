@@ -78,6 +78,7 @@ const BuyTokens = ({ avaiilableCurr, currentEthPrice }) => {
 				<input
 					className={styles.inputAmount}
 					type="text"
+					disabled
 					value={
 						amount
 							? `${amount.toLocaleString('en-IN')}`

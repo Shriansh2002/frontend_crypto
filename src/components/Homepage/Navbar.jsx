@@ -11,7 +11,7 @@ const NavBarItem = ({ title, classprops }) => (
 	</a>
 );
 
-const listOfFunctions = ['Market', 'Exchange', 'Tutorials'];
+const listOfFunctions = ['Market', 'Convert', 'Tutorials'];
 
 const Navbar = () => {
 	const [toggleMenu, setToggleMenu] = useState(false);

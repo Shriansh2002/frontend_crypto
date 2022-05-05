@@ -1,9 +1,4 @@
-import {
-	HomePage,
-	NotFoundPage,
-	MarketPage,
-	ExchangePage,
-} from './Pages/index';
+import { HomePage, NotFoundPage, MarketPage, ConvertPage } from './Pages/index';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -14,7 +9,7 @@ const App = () => {
 				<Routes>
 					<Route index path="/" element={<HomePage />} />
 					<Route exact path="/Market" element={<MarketPage />} />
-					<Route exact path="/Exchange" element={<ExchangePage />} />
+					<Route exact path="/Convert" element={<ConvertPage />} />
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 			</div>
