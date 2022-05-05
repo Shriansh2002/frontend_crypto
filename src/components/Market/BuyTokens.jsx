@@ -7,11 +7,12 @@ const styles = {
 	formContainer: `flex items-center`,
 	select: `w-1/2 flex items-center justify-center border border-white rounded-lg p-2 bg-transparent mt-6 text-white placeholder:text-white`,
 	options: `w-1/2 flex items-center justify-center border border-white rounded-lg p-2 bg-black mt-6 text-white placeholder:text-white`,
-	noticeCTA: 'font-bold text-green-500 cursor-pointer mt-5',
+	noticeCTA:
+		'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-5',
 };
 
 const BuyTokens = ({ avaiilableCurr, currentEthPrice }) => {
-	const [amount, setAmount] = useState('');
+	const [amount, setAmount] = useState();
 	const [currencyPrice, setCurrencyPrice] = useState('');
 	const [toCoin, setToCoin] = useState('bitcoin');
 	const [currencySelected, setCurrencySelected] = useState('BTC');
@@ -82,7 +83,7 @@ const BuyTokens = ({ avaiilableCurr, currentEthPrice }) => {
 							? `${amount.toLocaleString('en-IN')}`
 							: `Amount ...`
 					}
-					onChange={(e) => console.log(`updated value: ${amount}`)}
+					onChange={(e) => {}}
 				/>
 			</div>
 		</form>
