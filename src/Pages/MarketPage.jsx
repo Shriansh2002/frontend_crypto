@@ -158,20 +158,6 @@ const MarketPage = () => {
 								})}
 							</div>
 						</div>
-						<div className={styles.notice}>
-							<div className={styles.noticeContainer}>
-								<div className={styles.noticeTitle}>
-									Compare Funds
-								</div>
-								<div className={styles.noticeMessage}>
-									Compare your funds here.
-								</div>
-								<BuyTokens
-									avaiilableCurr={avaiilableCurr}
-									currentEthPrice={currentPrice.inr}
-								/>
-							</div>
-						</div>
 					</div>
 					<div className={styles.rightMain}>
 						<div className={styles.rightMainItem}>
