@@ -18,10 +18,10 @@ const TransactionsForm = () => {
 		useContext(TransactionsContext);
 
 	const handleSubmit = (e) => {
-		const { addressTo, amount, keyword, message } = formData;
+		const { addressTo, amount, message } = formData;
 		e.preventDefault();
 
-		if (!addressTo || !amount || !keyword || !message) return;
+		if (!addressTo || !amount || !message) return;
 		sendTransaction();
 	};
 	return (
@@ -37,12 +37,6 @@ const TransactionsForm = () => {
 					placeholder="Amount (ETH)"
 					name="amount"
 					type="number"
-					handleChange={handleChange}
-				/>
-				<Input
-					placeholder="Keyword (Gif)"
-					name="keyword"
-					type="text"
 					handleChange={handleChange}
 				/>
 				<Input
