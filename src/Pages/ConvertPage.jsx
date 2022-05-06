@@ -13,11 +13,10 @@ const styles = {
 	noticeCTA: 'font-bold text-green-500 cursor-pointer mt-5',
 };
 
-const ConvertPage = () => {
+const ConvertPage = ({ listOne }) => {
 	const [currentPrice, setCurrentPrice] = useState({});
 	const [avaiilableCurr, setAvaiilableCurr] = useState([]);
 
-	const listOne = ['bitcoin', 'dogecoin', 'litecoin'];
 	useEffect(() => {
 		const fetchCurrentPrice = async () => {
 			const { data } = await axios.get(getCurrentPrice('INR'));
@@ -35,13 +34,6 @@ const ConvertPage = () => {
 			fetchListData(item);
 		});
 	}, []);
-
-	const imagesData = [
-		'https://cryptologos.cc/logos/ethereum-eth-logo.png',
-		'https://cryptologos.cc/logos/bitcoin-btc-logo.png',
-		'https://cryptologos.cc/logos/litecoin-ltc-logo.png',
-		'https://cryptologos.cc/logos/dogecoin-doge-logo.png',
-	];
 
 	return (
 		<>
@@ -73,27 +65,6 @@ const ConvertPage = () => {
 					</div>
 				</div>
 			</div>
-
-			<marquee
-				behavior="scroll"
-				direction="left"
-				scrollamount="15"
-				style={{ marginTop: '50px' }}
-			>
-				{imagesData.map((doc) => (
-					<img
-						src={doc}
-						width="125"
-						height="82"
-						alt="Flying Bat"
-						style={{
-							float: 'left',
-							marginRight: 100,
-							marginLeft: 50,
-						}}
-					/>
-				))}
-			</marquee>
 		</>
 	);
 };

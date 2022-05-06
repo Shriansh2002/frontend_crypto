@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { HistoricalChart } from '../../utils/marketChartAPI';
 import axios from 'axios';
+import { Loader } from '../index';
 
 const styles = {
 	wrapper: 'flex justify-between p-5 hover:bg-[#30363B] duration-300',
@@ -12,10 +13,9 @@ const styles = {
 	percent: 'text-green-400',
 };
 
-const Asset = ({ coin }) => {
+const Asset = ({ coin, days }) => {
 	const [historicData, sethistoricData] = useState();
 	const [flag, setFlag] = useState(false);
-	const days = 1;
 
 	const setGraphColor = () => {
 		if (coin.price_change_percentage_24h < 0) {
@@ -36,35 +36,17 @@ const Asset = ({ coin }) => {
 
 		fetchHistoricData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [days]);
 
 	const data = {
-		labels: [
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-			'.',
-		],
+		labels: historicData?.map((coin) => {
+			let date = new Date(coin[0]);
+			let time =
+				date.getHours() > 12
+					? `${date.getHours() - 12}:${date.getMinutes()} PM`
+					: `${date.getHours()}:${date.getMinutes()} AM`;
+			return days === 1 ? time : date.toLocaleDateString();
+		}),
 
 		datasets: [
 			{
@@ -118,57 +100,69 @@ const Asset = ({ coin }) => {
 	};
 
 	return (
-		<div className={styles.wrapper}>
-			<div className={styles.container}>
-				<div className={styles.name}>{coin.symbol?.toUpperCase()}</div>
-			</div>
-			<div>
-				<div className={styles.chart}>
-					<Line
-						data={data}
-						options={options}
-						width={400}
-						height={150}
-					/>
-				</div>
-			</div>
+		<>
+			{historicData && flag == true ? (
+				<>
+					<div className={styles.wrapper}>
+						<div className={styles.container}>
+							<div className={styles.name}>
+								{coin.symbol?.toUpperCase()}
+							</div>
+						</div>
+						<div>
+							<div className={styles.chart}>
+								<Line
+									data={data}
+									options={options}
+									width={400}
+									height={150}
+								/>
+							</div>
+						</div>
 
-			<div className={styles.price}>
-				<div>
-					{coin.current_price?.toLocaleString('en-IN', {
-						maximumSignificantDigits: 7,
-						style: 'currency',
-						currency: 'INR',
-					})}
-				</div>
-				<div
-					className={styles.percent}
-					style={{
-						color:
-							coin.price_change_percentage_24h < 0
-								? '#ef4b09'
-								: '#00ff1a',
-					}}
-				>
-					{coin.price_change_percentage_24h > 0 && <>+ </>}
-					{coin.price_change_percentage_24h > 0.1 &&
-					coin.price_change_percentage_24h < 0.9
-						? coin.price_change_percentage_24h?.toLocaleString(
-								'en-IN',
-								{
-									maximumSignificantDigits: 1,
-								}
-						  )
-						: coin.price_change_percentage_24h?.toLocaleString(
-								'en-IN',
-								{
-									maximumSignificantDigits: 2,
-								}
-						  )}
-					%
-				</div>
-			</div>
-		</div>
+						<div className={styles.price}>
+							<div>
+								{coin.current_price?.toLocaleString('en-IN', {
+									maximumSignificantDigits: 7,
+									style: 'currency',
+									currency: 'INR',
+								})}
+							</div>
+							<div
+								className={styles.percent}
+								style={{
+									color:
+										coin.price_change_percentage_24h < 0
+											? '#ef4b09'
+											: '#00ff1a',
+								}}
+							>
+								{coin.price_change_percentage_24h > 0 && (
+									<>+ </>
+								)}
+								{coin.price_change_percentage_24h > 0.1 &&
+								coin.price_change_percentage_24h < 0.9
+									? coin.price_change_percentage_24h?.toLocaleString(
+											'en-IN',
+											{
+												maximumSignificantDigits: 1,
+											}
+									  )
+									: coin.price_change_percentage_24h?.toLocaleString(
+											'en-IN',
+											{
+												maximumSignificantDigits: 2,
+											}
+									  )}
+								%
+							</div>
+						</div>
+					</div>
+				</>
+			) : (
+				<Loader />
+			)}
+		</>
 	);
 };
 

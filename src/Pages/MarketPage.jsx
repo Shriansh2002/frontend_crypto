@@ -1,10 +1,4 @@
-import {
-	MarketChart,
-	Header,
-	Asset,
-	BuyTokens,
-	SelectButton,
-} from '../components/index';
+import { MarketChart, Header, Asset, SelectButton } from '../components/index';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 
 import { getCurrentPrice, getMarketInfo } from '../utils/marketChartAPI';
@@ -39,13 +33,12 @@ const styles = {
 	moreOptions: 'cursor-pointer text-xl',
 };
 
-const MarketPage = () => {
+const MarketPage = ({ listOne }) => {
 	const [currentPrice, setCurrentPrice] = useState({});
 	const [somedata, setSomeData] = useState({});
 	const [avaiilableCurr, setAvaiilableCurr] = useState([]);
 	const [days, setDays] = useState(1);
 
-	const listOne = ['bitcoin', 'dogecoin', 'litecoin'];
 	useEffect(() => {
 		const fetchCurrentPrice = async () => {
 			const { data } = await axios.get(getCurrentPrice('INR'));
@@ -163,6 +156,8 @@ const MarketPage = () => {
 						<div className={styles.rightMainItem}>
 							<div className={styles.ItemTitle}>
 								Crypto Currencies
+								<br />
+								Past {days} Day{days > 1 && 's'}
 							</div>
 
 							<BiDotsHorizontalRounded
@@ -171,7 +166,7 @@ const MarketPage = () => {
 						</div>
 
 						{avaiilableCurr.map((ele, index) => (
-							<Asset coin={ele} key={ele + index} />
+							<Asset coin={ele} key={ele + index} days={days} />
 						))}
 					</div>
 				</div>
