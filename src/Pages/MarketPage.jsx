@@ -1,4 +1,10 @@
-import { MarketChart, Header, Asset, SelectButton } from '../components/index';
+import {
+	MarketChart,
+	Header,
+	Asset,
+	SelectButton,
+	StatisticalData,
+} from '../components/index';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 
 import { getCurrentPrice, getMarketInfo } from '../utils/marketChartAPI';
@@ -168,6 +174,14 @@ const MarketPage = ({ listOne }) => {
 						{avaiilableCurr.map((ele, index) => (
 							<Asset coin={ele} key={ele + index} days={days} />
 						))}
+
+						<div className={styles.rightMainItem}>
+							<div className={styles.ItemTitle}>
+								ETH Price Statistics
+							</div>
+						</div>
+
+						<StatisticalData days={days} />
 					</div>
 				</div>
 			</div>
