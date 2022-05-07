@@ -92,32 +92,63 @@ const MarketPage = ({ listOne }) => {
 								)}
 							</div>
 							<div className={styles.portfolioPercent}>
-								<>
-									{somedata.price_change_24h > 0 && <>+ </>}
-									{somedata.price_change_24h?.toLocaleString(
-										'en-IN',
-										{
-											maximumSignificantDigits: 5,
-											style: 'currency',
-											currency: 'INR',
-										}
-									)}
-								</>
-								{'  '}
-								<>
-									(
-									{somedata.price_change_percentage_24h >
-										0 && <>+ </>}
-									{somedata.price_change_percentage_24h?.toLocaleString(
-										'en-IN',
-										{
-											maximumSignificantDigits: 3,
-										}
-									)}{' '}
-								</>
-								%)
+								{days == 1 && (
+									<>
+										{somedata.price_change_percentage_24h_in_currency >
+											0 && <>+ </>}
+										{somedata.price_change_percentage_24h_in_currency?.toLocaleString(
+											'en-IN',
+											{
+												maximumSignificantDigits: 3,
+											}
+										)}{' '}
+										%
+									</>
+								)}
+								{days == 7 && (
+									<>
+										{somedata.price_change_percentage_7d_in_currency >
+											0 && <>+ </>}
+										{somedata.price_change_percentage_7d_in_currency?.toLocaleString(
+											'en-IN',
+											{
+												maximumSignificantDigits: 3,
+											}
+										)}{' '}
+										%
+									</>
+								)}
+								{days == 30 && (
+									<>
+										{somedata.price_change_percentage_30d_in_currency >
+											0 && <>+ </>}
+										{somedata.price_change_percentage_30d_in_currency?.toLocaleString(
+											'en-IN',
+											{
+												maximumSignificantDigits: 3,
+											}
+										)}{' '}
+										%
+									</>
+								)}
+								{days == 365 && (
+									<>
+										{somedata.price_change_percentage_1y_in_currency >
+											0 && <>+ </>}
+										{somedata.price_change_percentage_1y_in_currency?.toLocaleString(
+											'en-IN',
+											{
+												maximumSignificantDigits: 3,
+											}
+										)}{' '}
+										%
+									</>
+								)}
+
+								{/*  */}
 								<span className={styles.pastHour}>
-									{'  '}Past 1 Day
+									{'  '}Past {days} Day
+									{days > 1 && <>s</>}
 								</span>
 							</div>
 						</div>

@@ -4,12 +4,12 @@ export const chartDays = [
 		value: 1,
 	},
 	{
-		label: '30 Days',
-		value: 30,
+		label: '1 Week',
+		value: 7,
 	},
 	{
-		label: '3 Months',
-		value: 90,
+		label: '30 Days',
+		value: 30,
 	},
 	{
 		label: '12 Months',

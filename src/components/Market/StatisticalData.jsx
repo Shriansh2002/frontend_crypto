@@ -41,7 +41,8 @@ const StatisticalData = () => {
 								{somedata.price_change_percentage_24h_in_currency >
 									0 && <>+</>}
 								{somedata.price_change_percentage_24h_in_currency?.toLocaleString(
-									'en-IN'
+									'en-IN',
+									{ maximumSignificantDigits: 3 }
 								)}{' '}
 								%
 							</div>
@@ -57,7 +58,8 @@ const StatisticalData = () => {
 								{somedata.price_change_percentage_30d_in_currency >
 									0 && <>+</>}
 								{somedata.price_change_percentage_30d_in_currency?.toLocaleString(
-									'en-IN'
+									'en-IN',
+									{ maximumSignificantDigits: 3 }
 								)}{' '}
 								%
 							</div>
@@ -73,7 +75,8 @@ const StatisticalData = () => {
 								{somedata.price_change_percentage_1y_in_currency >
 									0 && <>+</>}
 								{somedata.price_change_percentage_1y_in_currency?.toLocaleString(
-									'en-IN'
+									'en-IN',
+									{ maximumSignificantDigits: 3 }
 								)}{' '}
 								%
 							</div>
