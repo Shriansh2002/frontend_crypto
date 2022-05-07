@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { HistoricalChart } from '../../utils/marketChartAPI';
+import { HistoricalChart, getMarketInfo } from '../../utils/marketChartAPI';
 import {
 	Chart as ChartJS,
 	CategoryScale,
@@ -25,6 +25,7 @@ ChartJS.register(
 
 function MarketChart({ days, setDays }) {
 	const [historicData, sethistoricData] = useState();
+	const [someDaysData, setSomeDaysData] = useState();
 	const [flag, setFlag] = useState(false);
 	const currency = 'INR';
 
@@ -34,8 +35,13 @@ function MarketChart({ days, setDays }) {
 		sethistoricData(data.prices);
 	};
 
+	const fetchDataPrice = async () => {
+		const { data } = await axios.get(getMarketInfo('ethereum'));
+		setSomeDaysData(data[0]);
+	};
 	useEffect(() => {
 		fetchHistoricData();
+		fetchDataPrice();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [days, currency]);
 
@@ -52,6 +58,7 @@ function MarketChart({ days, setDays }) {
 						historicData={historicData}
 						days={days}
 						setDays={setDays}
+						someDaysData={someDaysData}
 						setFlag={setFlag}
 						currency={currency}
 					/>

@@ -81,14 +81,60 @@ const MarketPage = ({ listOne }) => {
 								<span className="bg-gray-100 text-gray-800 text-sm font-medium ml-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
 									Rank #{somedata.market_cap_rank}
 								</span>
-								{somedata.price_change_24h > 0 ? (
-									<AiFillCaretUp
-										style={{ color: '#00ff1a' }}
-									/>
-								) : (
-									<AiFillCaretDown
-										style={{ color: '#ef4b09' }}
-									/>
+								{days == 1 && (
+									<>
+										{somedata.price_change_24h > 0 ? (
+											<AiFillCaretUp
+												style={{ color: '#00ff1a' }}
+											/>
+										) : (
+											<AiFillCaretDown
+												style={{ color: '#ef4b09' }}
+											/>
+										)}
+									</>
+								)}
+								{days == 7 && (
+									<>
+										{somedata.price_change_percentage_7d_in_currency >
+										0 ? (
+											<AiFillCaretUp
+												style={{ color: '#00ff1a' }}
+											/>
+										) : (
+											<AiFillCaretDown
+												style={{ color: '#ef4b09' }}
+											/>
+										)}
+									</>
+								)}
+								{days == 30 && (
+									<>
+										{somedata.price_change_percentage_30d_in_currency >
+										0 ? (
+											<AiFillCaretUp
+												style={{ color: '#00ff1a' }}
+											/>
+										) : (
+											<AiFillCaretDown
+												style={{ color: '#ef4b09' }}
+											/>
+										)}
+									</>
+								)}
+								{days == 365 && (
+									<>
+										{somedata.price_change_percentage_1y_in_currency >
+										0 ? (
+											<AiFillCaretUp
+												style={{ color: '#00ff1a' }}
+											/>
+										) : (
+											<AiFillCaretDown
+												style={{ color: '#ef4b09' }}
+											/>
+										)}
+									</>
 								)}
 							</div>
 							<div className={styles.portfolioPercent}>
