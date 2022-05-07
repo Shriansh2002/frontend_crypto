@@ -1,9 +1,9 @@
 import {
 	MarketChart,
-	Header,
 	Asset,
 	SelectButton,
 	StatisticalData,
+	Navbar,
 } from '../components/index';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 
@@ -15,7 +15,7 @@ import { AiFillCaretUp, AiFillCaretDown } from 'react-icons/ai';
 
 const styles = {
 	wrapper: 'w-screen flex flex-col bg-black',
-	mainContainer: 'w-2/3 h-full m-auto flex mt-16',
+	mainContainer: 'w-2/3 h-full m-auto flex mt-10',
 	leftMain: 'flex flex-col w-3/4 h-full  p-6 overflow-y-scroll',
 	portfolioAmountContainer: 'flex flex-col ',
 	portfolioAmount: 'text-white text-4xl',
@@ -72,13 +72,13 @@ const MarketPage = ({ listOne }) => {
 	return (
 		<>
 			<div className={styles.wrapper}>
-				<Header />
+				<Navbar withAccDetails={true} />
 				<div className={styles.mainContainer}>
 					<div className={styles.leftMain}>
 						<div className={styles.portfolioAmountContainer}>
 							<div className={styles.portfolioAmount}>
 								ETHEREUM
-								<span className="bg-gray-100 text-gray-800 text-sm font-medium ml-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+								<span className="bg-gray-100 text-gray-800 text-sm font-bold ml-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
 									Rank #{somedata.market_cap_rank}
 								</span>
 								{days == 1 && (
@@ -227,11 +227,104 @@ const MarketPage = ({ listOne }) => {
 								Current Ethereum Price
 							</div>
 							<div className={styles.buyingPowerAmount}>
-								{currentPrice.inr?.toLocaleString('en-IN', {
-									maximumSignificantDigits: 6,
+								<b>
+									{currentPrice.inr?.toLocaleString('en-IN', {
+										maximumSignificantDigits: 6,
+										style: 'currency',
+										currency: 'INR',
+									})}
+								</b>
+							</div>
+						</div>
+						<div className={styles.buyingPowerContainer}>
+							<div className={styles.buyingPowerTitle}>
+								Market Cap
+							</div>
+							<div className={styles.buyingPowerAmount}>
+								{somedata.market_cap?.toLocaleString('en-IN', {
+									maximumSignificantDigits: 15,
 									style: 'currency',
 									currency: 'INR',
 								})}
+							</div>
+						</div>
+						<div className={styles.buyingPowerContainer}>
+							<div className={styles.buyingPowerTitle}>
+								Ethereum ROI
+							</div>
+							<div className={styles.buyingPowerAmount}>
+								<div
+									style={{
+										color:
+											somedata.roi?.percentage > 0
+												? '#00ff1a'
+												: '#ef4b09',
+									}}
+								>
+									{somedata.roi?.percentage > 0 && <>+ </>}
+									{somedata.roi?.percentage.toLocaleString(
+										'en-IN',
+										{ maximumSignificantDigits: 5 }
+									)}{' '}
+									%
+								</div>
+							</div>
+						</div>
+						<div className={styles.buyingPowerContainer}>
+							<div className={styles.buyingPowerTitle}>
+								24h Low / 24h High
+							</div>
+							<div className={styles.buyingPowerAmount}>
+								<div>
+									{somedata.low_24h?.toLocaleString('en-IN', {
+										maximumSignificantDigits: 5,
+										style: 'currency',
+										currency: 'INR',
+									})}{' '}
+									/{' '}
+									{somedata.high_24h?.toLocaleString(
+										'en-IN',
+										{
+											maximumSignificantDigits: 5,
+											style: 'currency',
+											currency: 'INR',
+										}
+									)}
+								</div>
+							</div>
+						</div>
+						<div className={styles.buyingPowerContainer}>
+							<div className={styles.buyingPowerTitle}>
+								All Time Low
+							</div>
+							<div className={styles.buyingPowerAmount}>
+								<div>
+									{somedata.atl?.toLocaleString('en-IN', {
+										maximumSignificantDigits: 6,
+										style: 'currency',
+										currency: 'INR',
+									})}{' '}
+								</div>{' '}
+								<p className="text-gray-400 text-base">
+									{somedata.atl_date?.slice(0, 10)}{' '}
+								</p>
+							</div>
+						</div>
+						<div className={styles.buyingPowerContainer}>
+							<div className={styles.buyingPowerTitle}>
+								All Time High
+							</div>
+							<div className={styles.buyingPowerAmount}>
+								<div>
+									{somedata.ath?.toLocaleString('en-IN', {
+										maximumSignificantDigits: 6,
+										style: 'currency',
+										currency: 'INR',
+									})}{' '}
+								</div>{' '}
+								<p className="text-gray-400 text-base">
+									{somedata.ath_date?.slice(0, 10)}{' '}
+								</p>
 							</div>
 						</div>
 					</div>

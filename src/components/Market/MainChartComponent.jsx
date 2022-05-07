@@ -6,19 +6,19 @@ const MainChartComponent = ({ historicData, days, currency, someDaysData }) => {
 		const greenColor = '#00ff1a';
 
 		if (days == 1) {
-			if (someDaysData.price_change_percentage_24h_in_currency > 0)
+			if (someDaysData?.price_change_percentage_24h_in_currency > 0)
 				return greenColor;
 			else return redColor;
 		} else if (days == 7) {
-			if (someDaysData.price_change_percentage_7d_in_currency > 0)
+			if (someDaysData?.price_change_percentage_7d_in_currency > 0)
 				return greenColor;
 			else return redColor;
 		} else if (days == 30) {
-			if (someDaysData.price_change_percentage_30d_in_currency > 0)
+			if (someDaysData?.price_change_percentage_30d_in_currency > 0)
 				return greenColor;
 			else return redColor;
 		} else if (days == 365) {
-			if (someDaysData.price_change_percentage_1y_in_currency > 0)
+			if (someDaysData?.price_change_percentage_1y_in_currency > 0)
 				return greenColor;
 			else return redColor;
 		}

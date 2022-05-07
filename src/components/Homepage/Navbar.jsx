@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 import logo from '../../../images/logo.png';
 import { TransactionsContext } from '../../context/TransactionsContext';
+import { shortenAddress } from '../../utils/shortenAddress';
 
 const NavBarItem = ({ title, classprops }) => (
 	<a href={`/${title.toLowerCase()}`}>
@@ -13,7 +14,7 @@ const NavBarItem = ({ title, classprops }) => (
 
 const listOfFunctions = ['Market', 'Convert', 'Tutorials'];
 
-const Navbar = () => {
+const Navbar = ({ withAccDetails }) => {
 	const [toggleMenu, setToggleMenu] = useState(false);
 	const { currentAccount, connectWallet } = useContext(TransactionsContext);
 
@@ -39,6 +40,12 @@ const Navbar = () => {
 							Login
 						</li>
 					</button>
+				)}
+
+				{withAccDetails && currentAccount && (
+					<div className="cursor-pointer font-bold hover:text-green-500 duration-300">
+						{shortenAddress(currentAccount)}
+					</div>
 				)}
 			</ul>
 			<div className="flex relative">

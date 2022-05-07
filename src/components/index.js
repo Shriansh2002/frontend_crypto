@@ -12,7 +12,6 @@ export { default as CardComponent } from './Homepage/CardComponent';
 
 //
 export { default as Asset } from './Market/Asset';
-export { default as Header } from './Market/Header';
 export { default as SelectButton } from './Market/SelectButton';
 export { default as MarketChart } from './Market/MarketChart';
 export { default as SetCurrency } from './Market/SetCurrency';
